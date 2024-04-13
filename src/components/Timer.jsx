@@ -1,12 +1,22 @@
-function Timer() {
+/* eslint-disable react/prop-types */
+import { useEffect } from "react"
 
-  const id = setInterval(function () {
+function Timer({ dispatch, secondsRemaining }) {
+  let mins = Math.floor(secondsRemaining / 60)
+  let seconds = secondsRemaining % 60
+
+  useEffect(function () { 
     
-   }, 1000)
+      const id = setInterval(function () {
+        dispatch({type: "tick"})
+      }, 1000)
+    return ()=> clearInterval(id)
+
+  }, [dispatch])
 
   return (
     <p  className="timer">
-      00:00
+     { String(mins).padStart(2,0)}: {String(seconds).padStart(2,0)}
     </p>
   )
 }
