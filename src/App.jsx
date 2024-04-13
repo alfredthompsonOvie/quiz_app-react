@@ -55,8 +55,12 @@ function reducer(state, action) {
 				highscore:
 					state.points > state.highscore ? state.points : state.highscore,
 			};
-		case "restart":
-      return { ...initialState, questions: state.questions, status: "ready " };
+    case "restart":
+      // eslint-disable-next-line no-case-declarations
+      // const questions = localStorage.getItem("questions")
+
+      return { ...initialState, questions: state.questions, status: "ready" };
+      // return { ...initialState, questions: JSON.parse(questions), status: "ready" };
     case "tick": 
       return {
         ...state,
@@ -92,7 +96,7 @@ function App() {
 
 				console.log("data", data.questions);
 
-				localStorage.setItem("questions", data.questions);
+				// localStorage.setItem("questions", JSON.stringify(data.questions));
 
 				dispatch({ type: "dataReceived", payload: data.questions });
 			} catch (err) {
