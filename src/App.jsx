@@ -53,10 +53,12 @@ function reducer(state, action) {
 
 function App() {
 
-  const [{ questions, status, index,answer,points, highscore  }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highscore }, dispatch] = useReducer(reducer, initialState);
   
-  const numQuestions = questions.length;
-  const numOfPossiblePoints = questions.reduce((acc, cur)=> acc + cur.points, 0)
+  console.log("questions", questions)
+  
+  const numQuestions = questions?.length;
+  const numOfPossiblePoints = questions?.reduce((acc, cur)=> acc + cur.points, 0)
 
 	useEffect(function () {
 		async function getData() {
@@ -65,9 +67,9 @@ function App() {
         const res = await fetch("https://webpulse-react-quiz.vercel.app/questions.json");
         const data = await res.json();
 
-        console.log(data)
+        console.log("data", data.questions)
         
-        dispatch({type: "dataReceived", payload: data})
+        dispatch({type: "dataReceived", payload: data.questions})
       } catch (err) {
         console.log(err)
         dispatch({type: "dataFailed"})
