@@ -61,8 +61,11 @@ function App() {
 	useEffect(function () {
 		async function getData() {
       try {
-        const res = await fetch("http://localhost:8000/questions");
+        // const res = await fetch("http://localhost:8000/questions");
+        const res = await fetch("https://webpulse-react-quiz.vercel.app/questions");
         const data = await res.json();
+
+        console.log(data)
         
         dispatch({type: "dataReceived", payload: data})
       } catch (err) {
