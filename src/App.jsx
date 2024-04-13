@@ -62,7 +62,7 @@ function App() {
 		async function getData() {
       try {
         // const res = await fetch("http://localhost:8000/questions");
-        const res = await fetch("https://webpulse-react-quiz.vercel.app/questions");
+        const res = await fetch("https://webpulse-react-quiz.vercel.app/questions.json");
         const data = await res.json();
 
         console.log(data)
